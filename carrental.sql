@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2019 at 02:45 PM
+-- Generation Time: Nov 24, 2019 at 04:47 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -64,9 +64,9 @@ CREATE TABLE `tblbooking` (
 --
 
 INSERT INTO `tblbooking` (`id`, `userEmail`, `VehicleId`, `FromDate`, `ToDate`, `message`, `Status`, `PostingDate`) VALUES
-(1, 'test@gmail.com', 2, '22/06/2019', '25/06/2019', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco', 1, '2019-06-19 20:15:43'),
+(1, 'test@gmail.com', 2, '22/06/2019', '25/06/2019', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco', 2, '2019-06-19 20:15:43'),
 (2, 'test@gmail.com', 3, '30/06/2019', '02/07/2019', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco', 2, '2019-06-26 20:15:43'),
-(3, 'test@gmail.com', 4, '02/07/2019', '07/07/2019', 'Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ', 0, '2019-06-26 21:10:06'),
+(3, 'test@gmail.com', 4, '02/07/2019', '07/07/2019', 'Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ', 1, '2019-06-26 21:10:06'),
 (4, 'hello@gmail.com', 2, '17/11/2019', '22/11/2019', 'Want this car', 0, '2019-11-22 05:59:42'),
 (5, 'hello@gmail.com', 7, '22/11/2019', '23/11/2019', 'Please Book', 1, '2019-11-22 07:16:52');
 
@@ -242,6 +242,7 @@ CREATE TABLE `tblvehicles` (
   `VehiclesBrand` int(11) DEFAULT NULL,
   `VehiclesOverview` longtext DEFAULT NULL,
   `PricePerDay` int(11) DEFAULT NULL,
+  `NetPricePerDay` int(11) DEFAULT NULL,
   `FuelType` varchar(100) DEFAULT NULL,
   `ModelYear` int(6) DEFAULT NULL,
   `SeatingCapacity` int(11) DEFAULT NULL,
@@ -270,12 +271,21 @@ CREATE TABLE `tblvehicles` (
 -- Dumping data for table `tblvehicles`
 --
 
-INSERT INTO `tblvehicles` (`id`, `VehiclesTitle`, `VehiclesBrand`, `VehiclesOverview`, `PricePerDay`, `FuelType`, `ModelYear`, `SeatingCapacity`, `Vimage1`, `Vimage2`, `Vimage3`, `Vimage4`, `Vimage5`, `AirConditioner`, `PowerDoorLocks`, `AntiLockBrakingSystem`, `BrakeAssist`, `PowerSteering`, `DriverAirbag`, `PassengerAirbag`, `PowerWindows`, `CDPlayer`, `CentralLocking`, `CrashSensor`, `LeatherSeats`, `RegDate`, `UpdationDate`) VALUES
-(2, 'M3 Coupe', 2, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam nibh. Nunc varius facilisis eros. Maecenas facilisis elit sed justo. Quisque volutpat malesuada velit. ', 859, 'CNG', 2015, 4, 'car_755x430.png', 'looking-used-car.png', 'banner-image.jpg', 'about_services_faq_bg.jpg', '', 1, 1, 1, 1, 1, 1, 1, NULL, 1, 1, NULL, NULL, '2017-06-19 16:16:17', '2019-11-22 01:23:18'),
-(3, 'Terrano', 4, 'Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem.', 563, 'CNG', 2012, 5, 'featured-img-3.jpg', 'dealer-logo.jpg', 'img_390x390.jpg', 'listing_img3.jpg', '', 1, 1, 1, 1, 1, 1, NULL, 1, 1, NULL, NULL, NULL, '2017-06-19 16:18:20', '2019-11-22 01:23:18'),
-(4, 'Ignis', 1, 'Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem.', 5636, 'CNG', 2012, 5, 'featured-img-3.jpg', 'featured-img-1.jpg', 'featured-img-1.jpg', 'featured-img-1.jpg', '', 1, 1, 1, 1, 1, 1, 1, 1, 1, NULL, NULL, NULL, '2017-06-19 16:18:43', '2019-11-22 01:23:18'),
-(5, 'Corolla', 5, 'Lorem Ipsum Lorem Ipsum', 345345, 'Petrol', 3453, 7, 'car_755x430.png', NULL, NULL, NULL, NULL, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2017-06-20 17:57:09', '2019-11-22 01:23:18'),
-(7, 'Scross', 1, 'Lorem Ipsum', 565, 'Diesel', 2019, 5, 'about_us_img1.jpg', 'banner-image.jpg', 'banner-image-1.jpg', 'car_755x430.png', '', 1, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-22 07:15:36', NULL);
+INSERT INTO `tblvehicles` (`id`, `VehiclesTitle`, `VehiclesBrand`, `VehiclesOverview`, `PricePerDay`, `NetPricePerDay`, `FuelType`, `ModelYear`, `SeatingCapacity`, `Vimage1`, `Vimage2`, `Vimage3`, `Vimage4`, `Vimage5`, `AirConditioner`, `PowerDoorLocks`, `AntiLockBrakingSystem`, `BrakeAssist`, `PowerSteering`, `DriverAirbag`, `PassengerAirbag`, `PowerWindows`, `CDPlayer`, `CentralLocking`, `CrashSensor`, `LeatherSeats`, `RegDate`, `UpdationDate`) VALUES
+(2, 'M3 Coupe', 2, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam nibh. Nunc varius facilisis eros. Maecenas facilisis elit sed justo. Quisque volutpat malesuada velit. ', 859, NULL, 'CNG', 2015, 4, 'car_755x430.png', 'looking-used-car.png', 'banner-image.jpg', 'about_services_faq_bg.jpg', '', 1, 1, 1, 1, 1, 1, 1, NULL, 1, 1, NULL, NULL, '2017-06-19 16:16:17', '2019-11-22 01:23:18'),
+(3, 'Terrano', 4, 'Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem.', 563, NULL, 'CNG', 2012, 5, 'featured-img-3.jpg', 'dealer-logo.jpg', 'img_390x390.jpg', 'listing_img3.jpg', '', 1, 1, 1, 1, 1, 1, NULL, 1, 1, NULL, NULL, NULL, '2017-06-19 16:18:20', '2019-11-22 01:23:18'),
+(4, 'Ignis', 1, 'Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem.', 5636, NULL, 'CNG', 2012, 5, 'featured-img-3.jpg', 'featured-img-1.jpg', 'featured-img-1.jpg', 'featured-img-1.jpg', '', 1, 1, 1, 1, 1, 1, 1, 1, 1, NULL, NULL, NULL, '2017-06-19 16:18:43', '2019-11-22 01:23:18'),
+(5, 'Corolla', 5, 'Lorem Ipsum Lorem Ipsum', 345345, NULL, 'Petrol', 3453, 7, 'car_755x430.png', NULL, NULL, NULL, NULL, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2017-06-20 17:57:09', '2019-11-22 01:23:18'),
+(7, 'Scross', 1, 'Lorem Ipsum', 565, NULL, 'Diesel', 2019, 5, 'about_us_img1.jpg', 'banner-image.jpg', 'banner-image-1.jpg', 'car_755x430.png', '', 1, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-22 07:15:36', NULL),
+(8, 'Scross', 1, 'eque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 400, 472, 'Diesel', 2018, 5, 'blog_img4.jpg', 'about_us_img4.jpg', 'blog_img3.jpg', 'car_755x430.png', '', 1, NULL, 1, NULL, 1, 1, 1, NULL, NULL, 1, NULL, NULL, '2019-11-24 15:41:36', NULL);
+
+--
+-- Triggers `tblvehicles`
+--
+DELIMITER $$
+CREATE TRIGGER `net_price_calculator` BEFORE INSERT ON `tblvehicles` FOR EACH ROW SET NEW.NetPricePerDay = NEW.PricePerDay * 1.18
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -403,7 +413,7 @@ ALTER TABLE `tblusers`
 -- AUTO_INCREMENT for table `tblvehicles`
 --
 ALTER TABLE `tblvehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
